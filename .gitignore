@@ -1,0 +1,23 @@
+# Dependências Node
+node_modules/
+
+# Builds
+dist/
+build/
+
+# Variáveis de ambiente
+.env
+
+# Logs
+logs/
+*.log
+
+# Docker
+*.tar
+
+# IDE
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store

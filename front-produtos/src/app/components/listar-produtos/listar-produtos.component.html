@@ -1,0 +1,19 @@
+<main>
+  <h2>Lista de Produtos</h2>
+  <button id="cadastrar" (click)="cadastrarProduto()">Cadastrar Novo Produto</button>
+    <div class="card-pai">
+      <div class="card" *ngFor="let p of produtos">
+        <div class="cards">
+          <p>
+            {{ p.nome }} - R$ {{ p.preco }} - Qtd: {{ p.quantidade }}
+          </p>
+          <div class="bnts">
+            <button id="att">Atualizar</button>
+            <button id="del" (click)="deletarProduto(p.id)">Deletar</button>
+            <button id="sell" (click)="venderProduto(p.id)">Vender</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</main>
