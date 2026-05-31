@@ -1,47 +1,23 @@
+<main>
+  <h2>Vender Produto</h2>
 
-<div class="container">
+  <div class="card-pai">
+    <div class="card">
+      <div class="cards">
 
-  <h1>Vender Produto</h1>
+        <form>  
+          <input [value]="nomeProduto" name="nomeProduto" type="text" placeholder="Nome do produto" readonly>
+          <input [value]="precoProduto" name="precoProduto" type="text" placeholder="Valor em R$" readonly>
+          <input [value]="quantidadeProduto" name="quantidadeProduto" type="text" placeholder="Quantidade em estoque" readonly>
+          <input [(ngModel)]="quantidadeVendida" name="quantidadeVendida" type="number" placeholder="Quantidade a vender">
 
-  <div class="formulario">
+          <div class="bnts">
+            <button id="cadastrar" type="button" (click)="vender()">Vender</button> 
+            <button type="button" (click)="voltar()">Voltar</button>
+          </div>
+        </form>
 
-    <input
-      [(ngModel)]="nomeProduto"
-      type="text"
-      disabled
-    >
-
-    <input
-      [(ngModel)]="precoProduto"
-      type="text"
-      disabled
-    >
-
-    <input
-      [(ngModel)]="quantidadeProduto"
-      type="text"
-      disabled
-    >
-
-    <input
-      [(ngModel)]="quantidadeVenda"
-      type="number"
-      placeholder="Quantidade para venda"
-    >
-
-    <div class="botoes">
-
-      <button type="button">
-        Vender
-      </button>
-
-      <button type="button">
-        Voltar 
-      </button>
-
+      </div>
     </div>
-
   </div>
-
-</div>
-```
+</main>

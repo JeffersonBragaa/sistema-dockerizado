@@ -28,4 +28,6 @@ export class ProdutoService {
     let url = this.api + `produto/${id}`;
     return this.http.get(url);
   }
+
+  
 }

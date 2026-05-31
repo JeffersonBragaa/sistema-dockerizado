@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../services/produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-vender-produto',
+  standalone: true,
   imports: [
-    CommonModule
+    CommonModule, FormsModule
   ],
   templateUrl: './vender-produto.component.html',
   styleUrl: './vender-produto.component.css'
@@ -43,6 +45,19 @@ ngOnInit() {
       this.router.navigate(['/']);
     }
   })
+  }
+
+  vender() {
+    if (this.quantidadeVendida > 0) {
+      alert(`Função de vender em desenvolvimento. Vendendo ${this.quantidadeVendida} unidades de ${this.nomeProduto}`);
+      
+    } else {
+      alert('Por favor, informe uma quantidade válida para venda.');
+    }
+  }
+
+  voltar() {
+    this.router.navigate(['/']);
   }
 
 }
