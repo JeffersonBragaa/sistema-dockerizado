@@ -56,6 +56,10 @@ button{
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 0.5rem;
+
+    &:hover{
+        background-color: #6f725f;
+    }
 }
 
 #att{
@@ -91,5 +95,6 @@ form{
         padding: 0.5rem;
         border-radius: 0.5rem;
         border: 1px solid #ccc;
+        text-align: center;
     }
 }

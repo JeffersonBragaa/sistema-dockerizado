@@ -23,7 +23,7 @@ export class VenderProdutoComponent {
   precoProduto: string = '';
   quantidadeVendida: number = 0;
 constructor(
-  private proutosService: ProdutoService,
+  private produtoService: ProdutoService,
   private router: Router, 
   private route: ActivatedRoute
   
@@ -31,7 +31,7 @@ constructor(
 
 ngOnInit() {
   this.id = Number(this.route.snapshot.paramMap.get('id'));
-  this.proutosService.getProdutoById(this.id).subscribe({
+  this.produtoService.getProdutoById(this.id).subscribe({
     next: (produto: any) => {
       this.produto = produto
       alert(`Produto carregado: ${this.produto.produtos.nome}`);
@@ -50,7 +50,20 @@ ngOnInit() {
   vender() {
     if (this.quantidadeVendida > 0) {
       alert(`Função de vender em desenvolvimento. Vendendo ${this.quantidadeVendida} unidades de ${this.nomeProduto}`);
-      
+      let id = this.id;
+      let quantidadeVendida = this.quantidadeVendida;
+      console.log('ID do produto a ser vendido:', id);
+      console.log('Quantidade a ser vendida:', quantidadeVendida);
+      this.produtoService.venderProduto(id, quantidadeVendida).subscribe({
+        next: (response) => {
+          alert('Produto vendido com sucesso!');
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          console.error('Erro ao vender produto:', error);
+          alert('Erro ao vender produto. Por favor, tente novamente.');
+        }
+      });
     } else {
       alert('Por favor, informe uma quantidade válida para venda.');
     }

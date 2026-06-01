@@ -74,7 +74,7 @@ button{
     }
 }
 
-#cadastrar{
+#sell{
     &:hover{
         background-color: #1cbb1c ;
     }

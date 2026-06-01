@@ -29,5 +29,8 @@ export class ProdutoService {
     return this.http.get(url);
   }
 
-  
+  venderProduto(id: number, quantidadeVendida: number) {
+    let url = this.api + `produtos/${id}/vender`;
+    return this.http.post(url, { quantidade: quantidadeVendida });
+  }
 }
