@@ -16,13 +16,13 @@ async function cadastrarProd(prod) {
     VALUES ($1, $2, $3)
     RETURNING *
   `;
-  const values = [prod.nome, prod.preco, prod.quantidade ];
-  try{
+  const values = [prod.nome, prod.preco, prod.quantidade];
+  try {
     const result = await pool.query(sql, values);
     return result.rows[0];
 
-  } catch (erro){
-    if(erro.code === '23505'){
+  } catch (erro) {
+    if (erro.code === '23505') {
       throw new Error('PROD_JA_CADASTRADO');
     }
   }
@@ -36,7 +36,7 @@ async function mostraProdutosAll() {
 
   const result = await pool.query(sql);
   console.log(result.rowCount);
-  if(result.rowCount === 0){
+  if (result.rowCount === 0) {
 
     throw new Error('NADA_CADASTRADO');
   }
@@ -50,7 +50,7 @@ async function mostraProdutoId(id) {
   `;
   const value = [id];
   const result = await pool.query(sql, value);
-  if(result.rowCount === 0){
+  if (result.rowCount === 0) {
     throw new Error('PROD_NAO_ENCONTRADO');
   }
   return result.rows[0];
@@ -65,7 +65,7 @@ async function deletaProduto(id) {
 
   const value = [id];
   const produto = await pool.query(sql, value);
-  if(produto.rowCount === 0){
+  if (produto.rowCount === 0) {
     throw new Error('PRODUTO_NAO_ENCONTRADO')
   }
   return produto.rows[0];
@@ -82,11 +82,15 @@ async function venderProduto(prod) {
   const produto = await pool.query(sql_verifica, values_verifica);
 
   if (produto.rowCount === 0) {
-    throw new Error('NAO_ENCONTRADO');
+    const err = new Error('NAO_ENCONTRADO');
+    err.code = 404;
+    throw err;
   }
-  
+
   if (produto.rows[0].quantidade < prod.quantidade) {
-    throw new Error('ESTOQUE_INSUFICIENTE');
+    const err = new Error('ESTOQUE_INSUFICIENTE');
+    err.code = 400;
+    throw err;
   }
 
   const sql_update = `
@@ -101,6 +105,7 @@ async function venderProduto(prod) {
 
   return result.rows[0];
 }
+
 async function atualizaProduto(prod) {
   const sql = `
     UPDATE produtos
@@ -114,13 +119,13 @@ async function atualizaProduto(prod) {
   const values = [prod.id, prod.nome, prod.preco, prod.quantidade];
   try {
     const result = await pool.query(sql, values);
-    if(result.rowCount === 0){
+    if (result.rowCount === 0) {
       throw new Error('NAO_ENCONTRADO');
     }
     return result.rows[0];
 
   } catch (erro) {
-    if(erro.code === '23505'){
+    if (erro.code === '23505') {
       throw new Error('PROD_JA_CADASTRADO');
     }
     throw erro;
@@ -132,6 +137,6 @@ module.exports = {
   mostraProdutosAll,
   mostraProdutoId,
   deletaProduto,
-  venderProduto, 
+  venderProduto,
   atualizaProduto
 };

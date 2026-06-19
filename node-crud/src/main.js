@@ -98,7 +98,7 @@ app.post('/cadastrar-produto', async (req, res) => {
 app.post('/produtos/:id/vender', async (req, res) => {
     
     const {id} =Number(req.params.id);
-    const {quantidade} = req.body;
+    const {quantidade} = req.body.quantidade;
     
     const prod = {
         id: Number(id),

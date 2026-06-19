@@ -97,4 +97,9 @@ form{
         border: 1px solid #ccc;
         text-align: center;
     }
+
+    #quantidade-vender{
+        background-color: #b1e6a7 ;
+        border: 1px solid #00ff0d;
+    }
 }

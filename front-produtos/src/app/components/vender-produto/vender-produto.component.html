@@ -9,7 +9,7 @@
           <input [value]="nomeProduto" name="nomeProduto" type="text" placeholder="Nome do produto" readonly>
           <input [value]="precoProduto" name="precoProduto" type="text" placeholder="Valor em R$" readonly>
           <input [value]="quantidadeProduto" name="quantidadeProduto" type="text" placeholder="Quantidade em estoque" readonly>
-          <input [(ngModel)]="quantidadeVendida" name="quantidadeVendida" type="number" placeholder="Quantidade a vender">
+          <input [(ngModel)]="quantidadeVendida" id="quantidade-vender" name="quantidadeVendida" type="number" placeholder="Quantidade a vender">
 
           <div class="bnts">
             <button id="sell" type="button" (click)="vender()">Vender</button> 
