@@ -97,8 +97,8 @@ app.post('/cadastrar-produto', async (req, res) => {
 
 app.post('/produtos/:id/vender', async (req, res) => {
     
-    const {id} =Number(req.params.id);
-    const {quantidade} = req.body.quantidade;
+    const id = Number(req.params.id);
+    const { quantidade } = req.body;
     
     const prod = {
         id: Number(id),
@@ -114,6 +114,7 @@ app.post('/produtos/:id/vender', async (req, res) => {
         });
 
     } catch (erro) {
+        console.error('Erro ao vender produto:', erro);
         if(erro.message === 'NAO_ENCONTRADO'){
             return res.status(404).json({
                 mensagem: 'Produto não encontrado'
